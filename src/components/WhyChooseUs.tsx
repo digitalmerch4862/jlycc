@@ -1,0 +1,78 @@
+import { motion } from 'motion/react';
+import { CheckCircle2 } from 'lucide-react';
+
+const reasons = [
+  "Over 40 years of ministry legacy and proven fruitfulness",
+  "Spirit-led training emphasizing the power of the Holy Spirit",
+  "Intensive leadership development for real-world ministry",
+  "Practical ministry exposure through our network of churches",
+  "Strong spiritual discipline culture modeling military excellence"
+];
+
+export default function WhyChooseUs() {
+  return (
+    <section id="why-us" className="py-24 bg-jly-blue text-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-jly-red font-bold tracking-widest text-sm mb-2">THE JLY DIFFERENCE</h2>
+            <h3 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
+              ANSWER THE CALL WITH EXCELLENCE
+            </h3>
+            <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+              We don't just impart knowledge; we forge character. Our environment is designed to strip away complacency and build spiritual resilience.
+            </p>
+
+            <ul className="space-y-4">
+              {reasons.map((reason, index) => (
+                <motion.li 
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
+                  className="flex items-start gap-3"
+                >
+                  <CheckCircle2 className="text-jly-red flex-shrink-0 mt-1" size={20} />
+                  <span className="text-gray-200 text-lg">{reason}</span>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative h-[500px] rounded-xl overflow-hidden border-4 border-white/10"
+          >
+            <img 
+              src="https://images.unsplash.com/photo-1519834785169-98be25ec3f84?q=80&w=1000&auto=format&fit=crop" 
+              alt="Worship and Ministry" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-jly-blue via-transparent to-transparent" />
+            <div className="absolute bottom-8 left-8 right-8">
+              <p className="text-2xl font-heading font-bold italic">"The just shall live by faith..."</p>
+              <p className="text-jly-red font-bold mt-2">— Habakkuk 2:4</p>
+            </div>
+          </motion.div>
+
+        </div>
+      </div>
+    </section>
+  );
+}

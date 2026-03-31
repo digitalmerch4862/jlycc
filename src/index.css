@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-jly-blue: #0A192F;
+  --color-jly-blue-light: #112240;
+  --color-jly-red: #D90429;
+  --color-jly-red-dark: #9B0018;
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #ffffff;
+  color: var(--color-jly-blue);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
