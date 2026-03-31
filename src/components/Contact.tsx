@@ -43,7 +43,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-bold text-jly-blue text-lg">Phone</h4>
-                  <p className="text-gray-600">8726-2099</p>
+                  <p className="text-gray-600">77-000-5669</p>
                 </div>
               </div>
 

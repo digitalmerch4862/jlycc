@@ -46,9 +46,10 @@ export default function Leadership() {
               key={leader.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.02, backgroundColor: "rgba(249, 250, 251, 1)" }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group text-center"
+              className="group text-center cursor-pointer p-6 rounded-2xl transition-all duration-300 hover:shadow-lg"
             >
               <div className="relative mb-6 mx-auto w-56 h-56 rounded-full overflow-hidden border-4 border-gray-100 group-hover:border-jly-red transition-all duration-300 shadow-xl">
                 {!imageErrors[leader.name] ? (
