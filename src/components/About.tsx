@@ -15,19 +15,20 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-gray-100">
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-gray-100 border-4 border-gray-50 hover:border-jly-red transition-colors duration-500"
+            >
               <iframe 
-                width="100%" 
-                height="100%" 
                 src="https://www.youtube.com/embed/GiURvSANcmw?start=2580" 
                 title="JLYCC Video" 
-                frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 referrerPolicy="strict-origin-when-cross-origin" 
                 allowFullScreen
-                className="w-full h-full"
+                className="w-full h-full border-none"
               ></iframe>
-            </div>
+            </motion.div>
             <div className="absolute -bottom-6 -left-6 bg-jly-blue text-white p-6 rounded-lg shadow-2xl border-l-4 border-jly-red hidden md:block z-10">
               <p className="font-heading font-black text-4xl">1983</p>
               <p className="text-sm font-bold tracking-widest uppercase text-gray-300 mt-1">Established</p>

@@ -21,94 +21,86 @@ const categories = ["All", "Worship", "Youth", "Community", "Events"];
 
 export default function Gallery() {
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const filteredPhotos = activeCategory === "All" 
-    ? photos 
-    : photos.filter(p => p.category === activeCategory);
 
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (selectedPhotoIndex !== null) {
-      setSelectedPhotoIndex((selectedPhotoIndex + 1) % filteredPhotos.length);
+      setSelectedPhotoIndex((selectedPhotoIndex + 1) % photos.length);
     }
   };
 
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (selectedPhotoIndex !== null) {
-      setSelectedPhotoIndex((selectedPhotoIndex - 1 + filteredPhotos.length) % filteredPhotos.length);
+      setSelectedPhotoIndex((selectedPhotoIndex - 1 + photos.length) % photos.length);
     }
   };
 
   return (
-    <section id="gallery" className="py-24 bg-gray-50">
+    <section id="gallery" className="py-24 bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-jly-red font-bold tracking-widest text-sm mb-2">OUR COMMUNITY</h2>
           <h3 className="text-4xl md:text-5xl font-black text-jly-blue mb-6">
             LIFE AT JLYCC
           </h3>
-          <p className="text-gray-600 text-lg mb-10">
+          <p className="text-gray-600 text-lg">
             Experience the joy, fellowship, and spiritual growth within our church family.
           </p>
-
-          {/* Category Filters */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-6 py-2 rounded-full text-sm font-bold tracking-widest uppercase transition-all duration-300 ${
-                  activeCategory === cat
-                    ? 'bg-jly-red text-white shadow-lg shadow-jly-red/20 scale-105'
-                    : 'bg-white text-gray-500 hover:bg-gray-100'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
         </div>
 
-        {/* Masonry Grid */}
-        <motion.div 
-          layout
-          className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 max-w-6xl mx-auto"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredPhotos.map((photo, index) => (
+        {/* 3D Photo Album Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto perspective-1000">
+          {photos.map((photo, index) => (
+            <motion.div
+              key={photo.url}
+              initial={{ opacity: 0, y: 50, rotateX: 20, rotateY: index % 2 === 0 ? 10 : -10 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0, rotateY: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ 
+                duration: 0.8, 
+                delay: index * 0.05,
+                type: "spring",
+                stiffness: 100
+              }}
+              className="relative group cursor-pointer"
+              onClick={() => setSelectedPhotoIndex(index)}
+            >
               <motion.div
-                layout
-                key={photo.url}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
-                className="break-inside-avoid"
+                whileHover={{ 
+                  scale: 1.05, 
+                  rotateY: index % 2 === 0 ? 15 : -15,
+                  rotateX: 10,
+                  z: 50,
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)"
+                }}
+                className="relative aspect-[4/5] rounded-lg overflow-hidden bg-white p-2 shadow-xl transform-gpu transition-all duration-500 preserve-3d"
               >
-                <motion.div
-                  whileHover={{ scale: 1.02, y: -5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="relative group cursor-pointer rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300"
-                  onClick={() => setSelectedPhotoIndex(index)}
-                >
+                {/* Photo Frame Effect */}
+                <div className="w-full h-full relative overflow-hidden rounded-sm">
                   <img
                     src={photo.url}
                     alt={`JLYCC Community ${index + 1}`}
-                    className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                    <span className="text-jly-red text-[10px] font-black tracking-[0.2em] uppercase mb-1">{photo.category}</span>
-                    <span className="text-white text-sm font-bold tracking-widest uppercase">View Photo</span>
-                  </div>
-                </motion.div>
+                  {/* Glossy Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none" />
+                </div>
+                
+                {/* Caption on Hover */}
+                <div className="absolute inset-0 bg-jly-blue/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center">
+                  <span className="text-jly-red text-[10px] font-black tracking-[0.3em] uppercase mb-2">{photo.category}</span>
+                  <span className="text-white text-sm font-bold tracking-widest uppercase border-b border-jly-red pb-1">View Memory</span>
+                </div>
               </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+              
+              {/* Stack Shadow Effect */}
+              <div className="absolute -bottom-4 left-4 right-4 h-8 bg-black/10 blur-xl rounded-full -z-10 group-hover:bg-black/20 transition-colors" />
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       {/* Lightbox */}
@@ -136,26 +128,30 @@ export default function Gallery() {
             </button>
 
             <div className="relative max-w-5xl w-full flex flex-col items-center">
-              <motion.img
+              <motion.div
                 key={selectedPhotoIndex}
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: -20 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                src={filteredPhotos[selectedPhotoIndex].url}
-                alt={`JLYCC Community ${selectedPhotoIndex + 1}`}
-                className="max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl"
+                initial={{ opacity: 0, scale: 0.8, rotateY: -45 }}
+                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                exit={{ opacity: 0, scale: 0.8, rotateY: 45 }}
+                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                className="relative bg-white p-3 rounded-sm shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
-                referrerPolicy="no-referrer"
-              />
-              <div className="mt-6 flex flex-col items-center gap-2">
-                <span className="text-jly-red font-black tracking-[0.3em] uppercase text-xs">
-                  {filteredPhotos[selectedPhotoIndex].category}
-                </span>
-                <div className="text-white/70 text-sm font-medium">
-                  {selectedPhotoIndex + 1} / {filteredPhotos.length}
+              >
+                <img
+                  src={photos[selectedPhotoIndex].url}
+                  alt={`JLYCC Community ${selectedPhotoIndex + 1}`}
+                  className="max-w-full max-h-[75vh] object-contain"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm p-4 border-l-4 border-jly-red">
+                  <span className="text-jly-red font-black tracking-[0.3em] uppercase text-[10px] block mb-1">
+                    {photos[selectedPhotoIndex].category}
+                  </span>
+                  <span className="text-jly-blue font-bold text-sm">
+                    Memory {selectedPhotoIndex + 1} of {photos.length}
+                  </span>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             <button
