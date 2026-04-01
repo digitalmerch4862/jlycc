@@ -19,7 +19,7 @@ export default function FloatingChat() {
   }
 
   return (
-    <div className="fixed top-8 right-8 z-50 flex flex-col items-end gap-4">
+    <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-4">
       {/* Initial Greeting Bubble */}
       {!isOpen && (
         <motion.div
