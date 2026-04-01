@@ -56,6 +56,7 @@ export default function Admins() {
       const adminId = newEmail.replace(/[^a-zA-Z0-9]/g, '_');
       await setDoc(doc(db, 'admins', adminId), {
         email: newEmail,
+        role: 'admin',
         permissions: newPermissions
       });
       setNewEmail('');

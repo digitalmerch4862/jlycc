@@ -29,8 +29,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       if (user) {
         setUser(user);
         // Check if user is in 'admins' collection or is the super admin
-        const adminDoc = await getDoc(doc(db, 'admins', user.uid));
-        if (adminDoc.exists() || user.email === 'digitalmerch4862@gmail.com') {
+        const adminIdByEmail = user.email?.replace(/[^a-zA-Z0-9]/g, '_');
+        const [adminDocByUid, adminDocByEmail] = await Promise.all([
+          getDoc(doc(db, 'admins', user.uid)),
+          adminIdByEmail ? getDoc(doc(db, 'admins', adminIdByEmail)) : Promise.resolve({ exists: () => false })
+        ]);
+
+        if (adminDocByUid.exists() || adminDocByEmail.exists() || user.email === 'digitalmerch4862@gmail.com') {
           setIsAdmin(true);
         } else {
           navigate('/login');
