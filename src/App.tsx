@@ -5,7 +5,6 @@ import About from './components/About';
 import VisionSummary from './components/Programs';
 import Events from './components/Events';
 import WhyChooseUs from './components/WhyChooseUs';
-import Gallery from './components/Gallery';
 import JLYCC from './components/JLYCC';
 import KingdomKids from './components/KingdomKids';
 import LeadtakersYouth from './components/LeadtakersYouth';
@@ -34,7 +33,6 @@ function LandingPage() {
         <VisionSummary />
         <Events />
         <WhyChooseUs />
-        <Gallery />
         <JLYCC />
         <KingdomKids />
         <LeadtakersYouth />
@@ -128,27 +126,6 @@ export default function App() {
                 { name: 'leader2_image', label: 'Leader 2 Image URL', type: 'url' },
                 { name: 'leader3_name', label: 'Leader 3 Name', type: 'text' },
                 { name: 'leader3_image', label: 'Leader 3 Image URL', type: 'url' },
-              ]}
-            />
-          </AdminLayout>
-        } />
-
-        <Route path="/admin/gallery" element={
-          <AdminLayout>
-            <SectionForm 
-              sectionId="gallery" 
-              title="Gallery" 
-              description="Manage the 3D Photo Album images."
-              fields={[
-                { name: 'title', label: 'Title', type: 'text' },
-                { name: 'subtitle', label: 'Subtitle', type: 'text' },
-                { name: 'description', label: 'Description', type: 'textarea' },
-                { name: 'image1', label: 'Image 1 URL', type: 'url' },
-                { name: 'image2', label: 'Image 2 URL', type: 'url' },
-                { name: 'image3', label: 'Image 3 URL', type: 'url' },
-                { name: 'image4', label: 'Image 4 URL', type: 'url' },
-                { name: 'image5', label: 'Image 5 URL', type: 'url' },
-                { name: 'image6', label: 'Image 6 URL', type: 'url' },
               ]}
             />
           </AdminLayout>
