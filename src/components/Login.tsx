@@ -75,7 +75,7 @@ export default function Login() {
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-jly-red rounded-full flex items-center justify-center mx-auto mb-4 overflow-hidden">
             <img 
-              src="https://scontent.fmnl30-1.fna.fbcdn.net/v/t39.30808-1/453783636_924875829678893_8484670298322969456_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=X-St79JfrFYQ7kNvwG3fXIP&_nc_oc=Adrz6NiXqrPvkHuLXp8NUlTnnbnC5H8ztOKfrXS0A4CJ3hzl95fj4p0IrzcH9GTWb64&_nc_zt=24&_nc_ht=scontent.fmnl30-1.fna&_nc_gid=cTbEn_ZsfHdBUlzMKXZbJQ&_nc_ss=7a3a8&oh=00_AfwR_AMyMCMIEF801PMjcRSaiSImgFbORNBSFihJ4NGAlQ&oe=69D15C14" 
+              src="/logo.png" 
               alt="JLYCC Logo" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
