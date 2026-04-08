@@ -160,20 +160,6 @@ export default function Hero({ previewData }: HeroProps) {
               </>
             ) : content.headline}
           </motion.h1>
-
-          <motion.h2 
-            variants={itemVariants}
-            className="text-2xl md:text-3xl font-bold text-gray-200 mb-6 tracking-[0.2em] uppercase"
-          >
-            {content.subheadline}
-          </motion.h2>
-          
-          <motion.p 
-            variants={itemVariants}
-            className="text-xl md:text-2xl text-gray-300 mb-8 font-medium max-w-2xl mx-auto leading-relaxed"
-          >
-            {content.description}
-          </motion.p>
           
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-8">
             {isLive && (
