@@ -9,7 +9,7 @@ export default function JLYCC() {
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-jly-blue/20 shrink-0">
               <img 
-                src="/android-chrome-512x512.png" 
+                src="/jlycc-logo.png" 
                 alt="JLYCC"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"

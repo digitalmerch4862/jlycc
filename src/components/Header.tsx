@@ -9,7 +9,7 @@ export default function Header() {
   const [isLive, setIsLive] = useState(false);
 
   const { content } = useContent('header', {
-    logoUrl: '/android-chrome-512x512.png',
+    logoUrl: '/jlycc-logo.png',
     churchName: 'JESUS LOVES YOU',
     tagline: 'City Church',
     liveMessage: 'Live Now: Sunday Service is Ongoing!',
@@ -77,7 +77,7 @@ export default function Header() {
           >
             <div className="relative flex items-center gap-3">
               <img 
-                src="/android-chrome-512x512.png" 
+                src="/jlycc-logo.png" 
                 alt="JLYCC Logo" 
                 className="w-10 h-10 object-contain"
                 referrerPolicy="no-referrer"

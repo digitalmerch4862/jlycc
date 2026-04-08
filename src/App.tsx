@@ -17,6 +17,7 @@ import Footer from './components/Footer';
 import SEO from './components/SEO';
 import Login from './components/Login';
 import FloatingChat from './components/FloatingChat';
+import InstallPrompt from './components/InstallPrompt';
 import AdminLayout from './components/Admin/AdminLayout';
 import Dashboard from './components/Admin/Dashboard';
 import SectionForm from './components/Admin/SectionForm';
@@ -44,6 +45,7 @@ function LandingPage() {
       </main>
       <Footer />
       <FloatingChat />
+      <InstallPrompt />
     </div>
   );
 }
