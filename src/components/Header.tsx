@@ -6,7 +6,6 @@ import { useContent } from '../hooks/useContent';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [logoError, setLogoError] = useState(false);
   const [isLive, setIsLive] = useState(false);
 
   const { content } = useContent('header', {
@@ -77,19 +76,12 @@ export default function Header() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             <div className="relative flex items-center gap-3">
-              {!logoError ? (
-                <img 
-                  src={content.logoUrl} 
-                  alt="JLYCC Logo" 
-                  className="w-10 h-10 object-contain"
-                  onError={() => setLogoError(true)}
-                  referrerPolicy="no-referrer"
-                />
-              ) : (
-                <div className="w-10 h-10 bg-jly-red rounded-full flex items-center justify-center shadow-lg shadow-jly-red/20">
-                  <span className="text-white font-heading font-bold text-lg">JLY</span>
-                </div>
-              )}
+              <img 
+                src="/logo.png" 
+                alt="JLYCC Logo" 
+                className="w-10 h-10 object-contain"
+                referrerPolicy="no-referrer"
+              />
               <div className="flex flex-col">
                 <span className="text-white font-heading font-bold text-lg leading-none tracking-tight uppercase">{content.churchName}</span>
                 <span className="text-white/90 text-[10px] font-bold tracking-[0.2em] uppercase mt-0.5">{content.tagline}</span>
